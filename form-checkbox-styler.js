@@ -16,7 +16,7 @@ function bold(phrases, checkboxes) {
         let label = chkbox.getElementsByTagName("label")[1];
         let replaced = label.innerHTML;
     	for(const phrase of phrases) {
-          replaced = replaced.replaceAll(phrase, "<span style='font-weight: 700'>"+phrase+"</span>");
+          replaced = replaced.replace(phrase, "<span style='font-weight: 700'>"+phrase+"</span>");
         }
         label.innerHTML = replaced;
     }
