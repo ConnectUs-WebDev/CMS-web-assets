@@ -1,4 +1,4 @@
-function underline(phrases) {
+function underline(phrases, checkboxes) {
 	for(let id of checkboxes) {
     	let chkbox = document.getElementById(id);
         let label = chkbox.getElementsByTagName("label")[1];
@@ -10,7 +10,7 @@ function underline(phrases) {
     }
 }
 
-function bold(phrases) {
+function bold(phrases, checkboxes) {
 	for(let id of checkboxes) {
     	let chkbox = document.getElementById(id);
         let label = chkbox.getElementsByTagName("label")[1];
