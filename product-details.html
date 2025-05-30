@@ -1,0 +1,187 @@
+<script src="https://cdn.jsdelivr.net/gh/ConnectUs-WebDev/CMS-web-assets@main/products.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      let description = document.getElementById("description");
+      let is_overflown = description.scrollHeight > 350;
+      let show_btn = document.getElementsByClassName("show-more")[0];
+      if(!is_overflown && show_btn) { show_btn.classList.add("hide"); }
+    });
+  </script>
+  
+  <script>
+    let checkout_btn = document.getElementsByClassName("hl-checkout-btn")[0];
+    let drawer = document.getElementsByClassName("drawer__content")[0];
+    
+    // Checks quantity of products in cart drawer. 
+    // Shows error for products that don't allow multiple purchases.
+    function checkQuantity() {
+      let has_monthly = false;
+      let has_quarterly = false;
+      let cai_pack_count = 0;
+      let bk_count = 0;
+      let bk_setup_count = 0;
+      let brand_count = 0;
+      let view_cart_btn = document.getElementById("view-cart-btn");
+      
+      // Get all Products in Cart
+      let cart_items = document.getElementsByClassName("hl-cart-details-item");
+      // Stop if cart is empty
+      if(!Array.from(cart_items).length) { 
+        drawer.classList.remove("warn");
+        return; 
+      }
+      
+      for(const product of cart_items) {
+        // Collect Product Details
+        let product_name = product.getElementsByClassName("hl-product-detail-product-name")[0].title;
+        let price = product.getElementsByClassName("hl-product-detail-product-price")[0];
+        let quantity = parseInt(product.getElementsByClassName("hl-quantity-input")[0].value);
+        let quantity_container = product.getElementsByClassName("hl-cart-qty-container")[0];
+        
+        // Check product type and set quantity
+        /*if(virtual_assistant[0].includes(product_name) || virtual_assistant[1].includes(product_name)) { 
+          product.classList.add("cai");
+          cai_pack_count += quantity;
+        }*/
+        if(bookkeeping[0].includes(product_name) || bookkeeping[1].includes(product_name)) { 
+          product.classList.add("bk");
+          bk_count+=quantity; 
+        }
+        /*if(brand.includes(product_name)) { 
+          brand_count+=quantity; 
+        }*/
+        if(bk_setup.includes(product_name)) { 
+          product.classList.add("bk-setup");
+          bk_setup_count+=quantity; 
+        }
+        
+        // Add payment period to product price
+        if(mnth_prods.includes(product_name)) { 
+            has_monthly = true;
+            price.classList.add("mnth"); 
+        }
+        else if(qrt_prods.includes(product_name)) { 
+            has_quarterly = true;
+            price.classList.add("qrt"); 
+        }
+      }
+      
+      const has_multiple_recurring = bk_count > 1 || brand_count > 1 || cai_pack_count > 1 || bk_setup_count > 1;
+      let warning_message = "";
+      const warning_container = document.getElementById("warning-container");
+      if(warning_container) {
+        warning_container.parentElement.remove();
+        view_cart_btn.classList.remove("hide");
+      }
+      
+      // Show warning message and hide check out button in case of invalid product combination or quantity
+      if(has_multiple_recurring) {
+        view_cart_btn.classList.add("hide");
+        warning_message.concat("<p>You can only purchase one recurring package</p>");
+    	}
+			if(has_monthly && has_quarterly) {
+        warning_message.concat("<p>You have a monthly and quarterly packages in your cart.</p>");
+			}
+
+      if(warning_message != "") {
+        const warning_container_html = "<div id='warning-container'>" + warning_message + "</div>";
+        let div = document.createElement("div");
+        div.innerHTML = warning_container_html.trim();
+        drawer.appendChild(div);
+      }
+
+      
+      let quantity_btns = document.getElementsByClassName("action-icon");
+      for (const btn of Array.from(quantity_btns)) {
+          btn.addEventListener("click", function() {
+						checkQuantity();
+					});
+      }
+      
+      let delete_btns = document.getElementsByClassName("delete-item-container");
+      for (const btn of Array.from(delete_btns)) {
+          btn.addEventListener("click", checkQuantity);
+      }
+      
+      markProducts(bk_count, brand_count, cai_pack_count, bk_setup_count);
+    }
+    
+    // add Exclamation mark for products with error
+    function markProducts(bk, brand, cai, bk_setup) {
+      let prod_types = [];
+      if(bk>1) { prod_types.push("bk") }
+      if(brand>1) { prod_types.push("brand") }
+      if(cai>1) { prod_types.push("cai") }
+      if(bk_setup>1) { prod_types.push("bk-setup") }
+      
+      let cart = document.getElementsByClassName("hl-cart-details-item");
+      for(const product of cart) {
+        let quantity_container = product.getElementsByClassName("quantity-actions-container")[0];
+        quantity_container.classList.remove("err");
+      }
+      
+      if(prod_types.length>0) {
+        for(const type of prod_types) {
+          let cart = document.getElementsByClassName(type);
+          console.log(cart);
+  
+          for(const product of cart) {
+            let quantity_container = product.getElementsByClassName("quantity-actions-container")[0];
+            quantity_container.classList.add("err");
+          }
+        }
+      }
+    }
+    
+    // Detect Added node to Drawer Element
+    const node_observer = new MutationObserver(function(mutations_list) {
+      mutations_list.forEach(function(mutation) {
+          if (mutation.addedNodes.length){
+            checkQuantity();
+            observer.disconnect();
+          }
+      });
+    });
+  
+    node_observer.observe(drawer, { subtree: false, childList: true });
+  
+  </script>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+    #warning-container:after {
+        content: "You can only purchase one recurring package";
+      width: fit-content;
+      font-weight: 400;
+      margin: 10px 16px 16px 16px;
+     font-family: "Montserrat", sans-serif;
+      color: #f04438;
+        text-align: center;
+      background-color: #fffbfa;
+      border: 1px solid #fda29b;
+      border-radius: 8px;
+      padding: 16px;
+    }
+    
+    .alert-danger {
+        display: none;
+    }
+    
+    .mnth:after {
+      content: "/month" !important;
+    }
+    .qrt:after {
+      content: "/quarter" !important;
+    }
+    
+    .err:after {
+        content: " !";
+      font-size: 20px;
+      color: red;
+    }
+    .description-full p, .description p, .description-full ul, .description ul {
+        margin: 0 !important;
+    }
+    .hide { display: none !important; }
+  </style>
