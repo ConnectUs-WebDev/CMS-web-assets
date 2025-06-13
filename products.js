@@ -4,7 +4,7 @@
   
     // Products sorted by type
     const virtual_assistant = [["Virtual Assistant - Business", "Virtual Assistant - Premium"], ["Virtual Assistant - Business Quarterly", "Virtual Assistant - Premium Quarterly"]];
-    const bookkeeping = [["Bookkeeping - Essential  ", "Bookkeeping - Premium "],["Bookkeeping - Essential  Quarterly", "Bookkeeping - Premium Quarterly"]];
+    const bookkeeping = [["Bookkeeping - Essential", "Bookkeeping - Premium"],["Bookkeeping - Essential  Quarterly", "Bookkeeping - Premium Quarterly"]];
     const brand = [["Social Media & Email Marketing - Brand Builder", "Social Media & Email Marketing - Brand Accelerator"], ["Social Media & Email Marketing - Brand Accelerator Quarterly", "Social Media & Email Marketing - Brand Builder Quarterly"]];
     const bk_setup = ["Bookkeeping - Basic Setup", "Bookkeeping - Standard Setup", "Bookkeeping - Advanced Setup"];
     
