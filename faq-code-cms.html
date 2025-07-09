@@ -1,0 +1,117 @@
+<div id="btns-container">
+  <div class="btn-row">
+    <button id="services" class="faq-btn pressed" data-screen="services">SERVICES</button>
+    <button id="packages" class="faq-btn" data-screen="packages">PACKAGES</button>
+    <button id="guide" class="faq-btn" data-screen="guide">PURCHASE GUIDE</button>
+  </div>
+  <div class="btn-row">
+    <button id="payments" class="faq-btn" data-screen="payments">PAYMENTS</button>
+    <button id="operations" class="faq-btn" data-screen="operations">OPERATIONS</button>
+    <button id="data" class="faq-btn" data-screen="data">DATA</button>
+  </div>
+</div>
+
+<style>
+  @media (max-width: 768px) {
+    #row-WNqAojy4WMS { overflow: hidden !important; }
+    .btn-row { 
+      flex-direction: row !important; 
+      justify-content: center;
+    }
+    
+    #btns-container {
+      width: 110% !important;
+      margin-left: -6% !important;
+    }
+    
+    .faq-btn { 
+      font-size: 10px !important; 
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+    .btn-row { width: 100% !important; }
+  }
+  
+  .btn-row, #btns-container { 
+    display: flex;  
+    flex-direction:column;
+    background-color: #e4e4e4;
+  }
+  
+  .btn-row {
+      width: 100%;
+  }
+  
+  .faq-btn {
+      color: #383838;
+    background-color: #e4e4e4;
+    padding: 15px 20px;
+        font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    width: 100%;
+    cursor: pointer;
+    border: none;
+    transition: background-color .2s ease;
+    text-wrap: nowrap;
+  }
+  
+  .faq-btn:hover {
+      background-color: white;
+  }
+  
+  .pressed {
+      color: white !important;
+    background-color: #002855 !important;
+  }
+  
+  .hide {
+      display: none !important;
+  }
+</style>
+
+
+
+  <script>
+      function switchTab() {
+          const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const tab = urlParams.has("tab") ? urlParams.get("tab") : null;
+        
+        if(tab != null) {
+          let faq_screens = document.getElementsByClassName("faq-screen");
+          for (var i = 0; i < faq_screens.length; i++) {
+            faq_screens[i].classList.add("hide");
+          }
+    
+          let screen = document.getElementsByClassName(tab);
+          for (var i = 0; i < screen.length; i++) {
+            screen[i].classList.remove("hide");
+          }
+          
+          let btns = document.getElementsByClassName("pressed");
+          for (var i = 0; i < btns.length; i++) {
+            btns[i].classList.remove("pressed");
+          }
+          
+          let btn_pressed = document.getElementById(tab);
+          btn_pressed.classList.add("pressed");
+        }
+        
+      }
+      
+      function showFaq(button_pressed) {
+      }
+      
+      const btns = document.getElementsByClassName("faq-btn");
+      for (var i = 0; i < btns.length; i++) {
+        let btn_id = btns[i].id;
+        btns[i].addEventListener("click", () => {
+          const params = new URLSearchParams({tab: btn_id});
+          window.history.replaceState({}, "", "?" + params.toString());
+          switchTab();
+        });
+      }
+      
+      document.addEventListener("DOMContentLoaded", switchTab);
+    </script>
