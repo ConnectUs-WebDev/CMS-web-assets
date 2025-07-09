@@ -1,0 +1,108 @@
+<div class="cms-hero-container">
+    <div class="cms-hero-text-container">
+        <h1 class="hero-header-cms" id="hero-header-cms">Reclaim valuable time</h1>
+        <p class="hero-paragraph-cms" id="hero-paragraph-cms">
+            Wish you had more hours in a day? Now it is possible!  
+            Let our highly skilled team help you so you can focus on the more important aspects of your business.
+        </p>
+    </div>
+</div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
+.cms-hero-container {
+    display: flex;
+    justify-content: center;
+  	height: 125px;
+}
+
+.cms-hero-text-container {
+  	position: absolute;
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 50vw;
+    text-align: left;
+}
+
+.hero-header-cms {
+    font-size: 44px;
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+.hero-paragraph-cms {
+   min-height: 60px;
+    font-size: 20px;
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+  
+  
+  /* Responsive adjustments */
+@media (max-width: 768px) {
+    .cms-hero-text-container {
+      	height: 80px;
+        text-align: center;
+        width: 100%; /* Full width on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-header-cms {
+        font-size: 24px;
+    }
+
+    .hero-paragraph-cms {
+     min-height: 50px;
+        font-size: 16px;
+    }
+}
+</style>
+ 
+
+<script>
+const slides = [
+    {
+        header: "Reclaim valuable time",
+        paragraph: "Wish you had more hours in a day? Now it is possible! Let our highly skilled team help you so you can focus on the more important aspects of your business."
+    },
+    {
+        header: "Operate business efficiently",
+        paragraph: "Delegation is the key. Hire experts under one agency."
+    },
+    {
+        header: "Increase your bottom line",
+        paragraph: "A higher net income is a result of more sales and savings.  We can help with both."
+    }
+];
+
+let currentIndex = 0;
+const headerElement = document.getElementById("hero-header-cms");
+const paragraphElement = document.getElementById("hero-paragraph-cms");
+
+function updateSlide() {
+    // Fade out
+    headerElement.style.opacity = 0;
+    paragraphElement.style.opacity = 0;
+
+    setTimeout(() => {
+        // Change text content
+        currentIndex = (currentIndex + 1) % slides.length;
+        headerElement.innerText = slides[currentIndex].header;
+        paragraphElement.innerText = slides[currentIndex].paragraph;
+
+        // Fade in
+        headerElement.style.opacity = 1;
+        paragraphElement.style.opacity = 1;
+    }, 1000); // 1-second fade out duration
+}
+
+// Start the loop every 3 seconds
+setInterval(updateSlide, 8000);
+</script>
