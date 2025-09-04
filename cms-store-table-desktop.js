@@ -154,23 +154,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
  const links = {
             'brand-builder': isQuarterly
-                ? 'https://packages.connectus-marketing.com/product-details/product/681d364b0b214471a8327b43'
-                : 'https://packages.connectus-marketing.com/product-details/product/681d35dce996ef6bf54c1763',
+                ? 'https://packages.connettiq.com/product-details/product/681d364b0b214471a8327b43'
+                : 'https://packages.connettiq.com/product-details/product/681d35dce996ef6bf54c1763',
             'brand-accelerator': isQuarterly
-                ? 'https://packages.connectus-marketing.com/product-details/product/681d36e90b2144a61a327c16'
-                : 'https://packages.connectus-marketing.com/product-details/product/681d36a50b2144b680327bad',
+                ? 'https://packages.connettiq.com/product-details/product/681d36e90b2144a61a327c16'
+                : 'https://packages.connettiq.com/product-details/product/681d36a50b2144b680327bad',
             'essential-book': isQuarterly
-                ? 'https://packages.connectus-marketing.com/product-details/product/681d3a14b6a3fd55866d2f24'
-                : 'https://packages.connectus-marketing.com/product-details/product/681d3961e996ef06d74c1983',
+                ? 'https://packages.connettiq.com/product-details/product/681d3a14b6a3fd55866d2f24'
+                : 'https://packages.connettiq.com/product-details/product/681d3961e996ef06d74c1983',
             'premium-book': isQuarterly
-                ? 'https://packages.connectus-marketing.com/product-details/product/681d3b42e996ef76c64c1b74'
-                : 'https://packages.connectus-marketing.com/product-details/product/681d3a92e74e76dadb6bd189',
+                ? 'https://packages.connettiq.com/product-details/product/681d3b42e996ef76c64c1b74'
+                : 'https://packages.connettiq.com/product-details/product/681d3a92e74e76dadb6bd189',
             'va-business': isQuarterly
-                ? 'https://packages.connectus-marketing.com/product-details/product/681e66a5e74e76bbf26c5cae'
-                : 'https://packages.connectus-marketing.com/product-details/product/681e6670c83ce11af2b9afe3',
+                ? 'https://packages.connettiq.com/product-details/product/681e66a5e74e76bbf26c5cae'
+                : 'https://packages.connettiq.com/product-details/product/681e6670c83ce11af2b9afe3',
             'va-premium': isQuarterly
-                ? 'https://packages.connectus-marketing.com/product-details/product/681e6733b6a3fd192b6daa15'
-                : 'https://packages.connectus-marketing.com/product-details/product/681e66e6b6a3fd87c66da9fa'
+                ? 'https://packages.connettiq.com/product-details/product/681e6733b6a3fd192b6daa15'
+                : 'https://packages.connettiq.com/product-details/product/681e66e6b6a3fd87c66da9fa'
         };
 
         const priceIdMap = {
