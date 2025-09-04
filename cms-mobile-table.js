@@ -31,15 +31,15 @@ function priceToggleCMS_SocialManagement() {
         if (isQuarterly) {
             brandBuilderPrice.textContent = '$6,480/qtr';
             brandAcceleratorPrice.textContent = '$9,720/qtr';
-            brandBuilderLink.href = 'https://packages.connectus-marketing.com/product-details/product/681d364b0b214471a8327b43';
-            brandAcceleratorLink.href = 'https://packages.connectus-marketing.com/product-details/product/681d36e90b2144a61a327c16';
+            brandBuilderLink.href = 'https://packages.connettiq.com/product-details/product/681d364b0b214471a8327b43';
+            brandAcceleratorLink.href = 'https://packages.connettiq.com/product-details/product/681d36e90b2144a61a327c16';
             saveBrandBuild.style.display = 'block';
             saveBrandAccel.style.display = 'block';
         } else {
             brandBuilderPrice.textContent = '$2,400/mo';
             brandAcceleratorPrice.textContent = '$3,600/mo';
-            brandBuilderLink.href = 'https://packages.connectus-marketing.com/product-details/product/681d35dce996ef6bf54c1763';
-            brandAcceleratorLink.href = 'https://packages.connectus-marketing.com/product-details/product/681d36a50b2144b680327bad';
+            brandBuilderLink.href = 'https://packages.connettiq.com/product-details/product/681d35dce996ef6bf54c1763';
+            brandAcceleratorLink.href = 'https://packages.connettiq.com/product-details/product/681d36a50b2144b680327bad';
             saveBrandBuild.style.display = 'none';
             saveBrandAccel.style.display = 'none';
         }
@@ -71,8 +71,8 @@ function priceToggleCMS_VA() {
         if (isQuarterly) {
             vaBusinessPrice.textContent = '$6,480/qtr';
             vaPremiumPrice.textContent = '$3,240/qtr';
-            vaBusinessLink.href = 'https://packages.connectus-marketing.com/product-details/product/681e66a5e74e76bbf26c5cae';
-            vaPremiumLink.href = 'https://packages.connectus-marketing.com/product-details/product/681e6733b6a3fd192b6daa15';
+            vaBusinessLink.href = 'https://packages.connettiq.com/product-details/product/681e66a5e74e76bbf26c5cae';
+            vaPremiumLink.href = 'https://packages.connettiq.com/product-details/product/681e6733b6a3fd192b6daa15';
 
             quarterlyNote.style.display = 'block';
             monthlyNote.style.display = 'none';
@@ -81,8 +81,8 @@ function priceToggleCMS_VA() {
         } else {
             vaBusinessPrice.textContent = '$2,400/mo';
             vaPremiumPrice.textContent = '$1,200/mo';
-            vaBusinessLink.href = 'https://packages.connectus-marketing.com/product-details/product/681e6670c83ce11af2b9afe3';
-            vaPremiumLink.href = 'https://packages.connectus-marketing.com/product-details/product/681e66e6b6a3fd87c66da9fa';
+            vaBusinessLink.href = 'https://packages.connettiq.com/product-details/product/681e6670c83ce11af2b9afe3';
+            vaPremiumLink.href = 'https://packages.connettiq.com/product-details/product/681e66e6b6a3fd87c66da9fa';
 
             monthlyNote.style.display = 'block';
             quarterlyNote.style.display = 'none';
