@@ -62,7 +62,7 @@ function setupAnchorListeners() {
 
     if (accountManagementShortcut) {
         accountManagementShortcut.addEventListener('click', (e) => {
-            e.preventDefault();
+            //e.preventDefault();
             toggleSwitch(1, 'social');
         });
     }
