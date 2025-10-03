@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <head>
+    <base target="_top">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Folder Duplicator</title>
+    <style>
+      :root { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+      body { margin: 24px; color: #111; }
+      h1 { font-size: 1.25rem; margin-bottom: 12px; }
+      .card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px; max-width: 640px; }
+      label { display: block; font-weight: 600; margin-top: 12px; margin-bottom: 6px; }
+      input[type=text] {
+        width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 8px;
+      }
+      .row { display: grid; gap: 12px; }
+      button {
+        margin-top: 16px; padding: 10px 14px; border: 0; border-radius: 8px;
+        background: #111827; color: white; font-weight: 600; cursor: pointer;
+      }
+      button[disabled] { opacity: 0.6; cursor: not-allowed; }
+      .help { font-size: 12px; color: #6b7280; }
+      .status { margin-top: 14px; }
+      .ok { color: #065f46; }
+      .err { color: #991b1b; }
+      .link { margin-top: 10px; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+      .checkbox { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Folder Duplicator</h1>
+      <div class="row">
+        <label for="src">Source Folder ID</label>
+        <input id="src" type="text" placeholder="e.g. 1a2B3cD4... (the folder you want to copy)" />
+
+        <label for="dst">Destination Parent Folder ID</label>
+        <input id="dst" type="text" placeholder="e.g. 9ZyX8wV7... (the folder to put the copy inside)" />
+
+        <label class="checkbox">
+          <input id="ren" type="checkbox" checked />
+          <span>Update any “Month Year” in names to the current month/year</span>
+        </label>
+      </div>
+
+      <button id="goBtn">Duplicate Folder</button>
+
+      <div id="status" class="status"></div>
+      <div id="result" class="link"></div>
+
+      <p class="help" style="margin-top:16px">
+        Tip: The folder ID is the long string in the URL after <span class="mono">/folders/</span>.
+      </p>
+    </div>
+
+    <script>
+      const $ = (id) => document.getElementById(id);
+      const goBtn = $('goBtn');
+      const status = $('status');
+      const result = $('result');
+
+      goBtn.addEventListener('click', () => {
+        const sourceFolderId = $('src').value.trim();
+        const destParentId = $('dst').value.trim();
+        const renameTokens = $('ren').checked;
+
+        result.textContent = '';
+        if (!sourceFolderId || !destParentId) {
+          status.innerHTML = '<span class="err">Please fill in both IDs.</span>';
+          return;
+        }
+
+        if (sourceFolderId === destParentId) {
+          status.innerHTML = '<span class="err">Destination cannot be the same as source.</span>';
+          return;
+        }
+
+        goBtn.disabled = true;
+        status.textContent = 'Duplicating… This can take a while for large folders.';
+
+        google.script.run
+          .withSuccessHandler((res) => {
+            goBtn.disabled = false;
+            if (!res || !res.ok) {
+              status.innerHTML = '<span class="err">' + (res && res.message ? res.message : 'Unknown error') + '</span>';
+              return;
+            }
+            status.innerHTML = '<span class="ok">Done! New folder created: <b>' + res.name + '</b></span>';
+            result.innerHTML = '<a href="' + res.newFolderUrl + '" target="_blank" rel="noopener">Open the duplicated folder</a>';
+          })
+          .withFailureHandler((err) => {
+            goBtn.disabled = false;
+            status.innerHTML = '<span class="err">' + (err && err.message ? err.message : String(err)) + '</span>';
+          })
+          .duplicateFromUi({ sourceFolderId, destParentId, renameTokens });
+      });
+    </script>
+  </body>
+</html>
