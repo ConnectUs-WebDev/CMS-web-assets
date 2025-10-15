@@ -1,6 +1,3 @@
- 
- 
-
 document.addEventListener("DOMContentLoaded", function () {
     showSection(0); // Set Virtual Assistant as the default section
 });
@@ -8,11 +5,16 @@ document.addEventListener("DOMContentLoaded", function () {
 function showSection(index) {
     const sections = ['virtual-assistant-mobile', 'cms-social' ];
     const options = document.querySelectorAll('.switch-option');
-    sections.forEach((id, i) => {
-        const section = document.getElementById(id);
-        section.style.display = (i === index) ? 'flex' : 'none';
-        options[i].classList.toggle('active', i === index);
-    });
+ sections.forEach((id, i) => {
+  const section = document.getElementById(id);
+  if (section) {
+    section.style.display = (i === index) ? 'flex' : 'none';
+  }
+  if (options[i]) {
+    options[i].classList.toggle('active', i === index);
+  }
+});
+
     const slider = document.getElementById('slider');
     slider.style.transition = 'transform 0.3s ease-in-out, background-color 0.3s ease-in-out';
     slider.style.transform = `translateX(${index * 100}%)`;
