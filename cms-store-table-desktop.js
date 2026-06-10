@@ -319,8 +319,8 @@ function scrollToSection(index, containerClass, sectionId) {
 
 document.addEventListener("DOMContentLoaded", function () {
     const toggleWrapper = document.querySelector(".toggle-wrapper");
-    const socialSection = document.getElementById("social-section");
-    const vaTable = document.getElementById("va-table");
+    const socialSection = document.getElementById("socmed-email-marketing");
+    const vaTable = document.getElementById("virtual-business-processes");
 
     const activateSticky = (isActive) => {
         if (isActive) {
